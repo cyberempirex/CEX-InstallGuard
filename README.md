@@ -1,10 +1,12 @@
-# CEX-InstallGuard 🔐  
-Analyze install scripts before you execute them.
+# 🔐 CEX-InstallGuard
 
-CEX-InstallGuard is a **Termux-first security analysis tool** that helps you inspect shell scripts, install scripts, and command sequences **before running them**.
+Analyze install scripts **before** you execute them.
+
+CEX-InstallGuard is a **Termux-first security analysis tool** that helps you inspect shell and install scripts safely — without running them.
 
 Built for people who value **safety, transparency, and control**.
 
+---
 
 ## 🚀 Why CEX-InstallGuard Exists
 
@@ -12,160 +14,163 @@ Many Termux users blindly run commands like:
 
 ```bash
 curl something | bash
+```
 
-This tool exists to answer one question before damage happens:
+This tool exists to answer one critical question *before damage happens*:
 
-> “Is this script safe to run?”
+> **“Is this script safe to run?”**
 
-
-
+---
 
 ## 🛡️ Features
 
-✔ Analyze shell scripts without executing them
-✔ Detect high-risk commands (rm -rf, chmod 777, privilege abuse)
-✔ Classify risks into High / Medium / Low
-✔ Show exact line numbers of dangerous commands
-✔ Offline-first (no internet required)
-✔ Designed for low-end Android phones
-✔ Simple menu-based interface
-✔ Ethical & defensive by design
+✔ Analyze shell scripts **without executing** them  
+✔ Detect high-risk commands (`rm -rf`, `chmod 777`, permission abuse)  
+✔ Classify risks into **High / Medium / Low**  
+✔ Show **exact line numbers** of dangerous commands  
+✔ Offline-first (no internet required)  
+✔ Designed for low-end Android phones  
+✔ Simple menu-based interface  
+✔ Ethical & defensive by design  
 
+---
+
+## 📸 Screenshots
+
+### ✅ Clean Script Analysis
 ![Clean Script Analysis](assets/screen-clean.png)
+
+### ❌ Dangerous Script Detection
 ![Dangerous Script Detection](assets/screen-danger.png)
+
+> 📱 **Note:** GitHub mobile shows screenshots as links.  
+> Open in **desktop view** to see inline images.
+
+---
 
 ## 📦 Tool Information
 
-Field	Value
+| Field | Value |
+|-----|------|
+| Tool Name | CEX-InstallGuard |
+| Version | v2.0.1 |
+| Platform | Termux (Android) |
+| Language | Python 3 |
+| License | MIT |
+| Author | CyberEmpireX |
 
-Tool Name	CEX-InstallGuard
-Version	v2.0.1
-Platform	Termux (Android)
-Language	Python 3
-License	MIT
-Author	CyberEmpireX
-
-
-
+---
 
 ## ⚙️ Installation (Termux)
 
-#1️⃣Install  dependencies
-
+### 1️⃣ Install dependencies
+```bash
 pkg update && pkg upgrade
 pkg install python git
+```
 
-#2️⃣ Clone repository
+### 2️⃣ Clone the repository
+```bash
+git clone https://github.com/cyberempirex/CEX-InstallGuard.git
+cd CEX-InstallGuard
+```
 
-git clone https://github.com/cyberempirex/cex-installguard.git
-cd cex-installguard
-
-#3️⃣ Make executable
-
+### 3️⃣ Make executable
+```bash
 chmod +x installguard.py
+```
 
-#4️⃣ Run tool
-
+### 4️⃣ Run the tool
+```bash
 python installguard.py
+```
 
-
+---
 
 ## 🧪 Usage Examples
 
-🔍 Analyze a script file
-
+### 🔍 Analyze a script file
+```
 Option: 1
 Enter script path: install.sh
+```
 
-🔎 Analyze a full path
-
+### 🔎 Analyze using full path
+```bash
 /data/data/com.termux/files/home/tool/install.sh
+```
 
-## ⚠️ Dangerous script example
+---
 
+## ⚠️ Dangerous Script Example
+
+```bash
 chmod 777 ~/.ssh
 rm -rf /
+```
 
-The tool will flag it immediately.
+🚨 **The tool will flag this immediately as HIGH RISK**
 
+---
 
 ## 🧠 How It Works (Simple Explanation)
 
-1. Reads the script as text
-
-
+1. Reads the script as **plain text**
 2. Calculates file hash
-
-
 3. Counts lines & size
-
-
 4. Scans for known dangerous patterns
-
-
-5. Scores risk level
-
-
+5. Scores overall risk level
 6. Shows a clear verdict
 
+🚫 **The script is never executed**
 
-
-🚫 It never executes the script.
-
-
+---
 
 ## 📜 About CyberEmpireX
 
 CyberEmpireX focuses on:
 
-Ethical hacking education
+- Ethical hacking education  
+- Defensive cybersecurity tools  
+- Practical learning for low-resource users  
 
-Defensive cybersecurity tools
+🌐 Website: https://cyberempirex.com  
+💬 Telegram: https://t.me/CyberEmpireXChat  
+🐙 GitHub: https://github.com/cyberempirex  
 
-Practical learning for low-resource users
+---
 
+## ⚠️ Legal & Ethics Notice
 
-🌐 Website: https://cyberempirex.com (upcoming)
-💬 Telegram: https://t.me/CyberEmpireXChat
-🐙 GitHub: https://github.com/cyberempirex
+This tool is intended for:
 
+✔ Educational use  
+✔ Defensive analysis  
+✔ Scripts you own or trust  
 
-
-# ⚠️ Legal & Ethics Notice
-
-This tool is for:
-
-✔ Educational use
-✔ Defensive analysis
-✔ Scripts you own or trust
-
-❌ Not for illegal activity
-❌ Not for attacking systems
+❌ Not for illegal activity  
+❌ Not for attacking systems  
 
 You are responsible for how you use this tool.
 
+---
 
+## 📈 Future Roadmap
 
-# 📈 Future Roadmap
+- CLI mode (`cex-installguard file.sh`)
+- Export scan reports (JSON / TXT)
+- URL-based script fetching
+- Integration with CEX Builder
+- Visual risk score indicator
 
-CLI mode (cex-installguard file.sh)
-
-Export scan reports (JSON / TXT)
-
-URL script fetching
-
-Integration with CEX Builder
-
-Risk score visualization
-
-
+---
 
 ## 📄 License
 
-MIT License
-You are free to use, modify, and distribute with credit.
+MIT License  
+Free to use, modify, and distribute with credit.
 
+---
 
-
-Think before you run.
-Security starts with awareness. 🔐
+**Think before you run.**  
+**Security starts with awareness. 🔐**
