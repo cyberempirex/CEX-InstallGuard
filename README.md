@@ -32,7 +32,6 @@ This tool exists to answer one question before damage happens:
 ✔ Ethical & defensive by design
 
 ![Clean Script Analysis](assets/screen-clean.png)
-
 ![Dangerous Script Detection](assets/screen-danger.png)
 
 ## 📦 Tool Information
