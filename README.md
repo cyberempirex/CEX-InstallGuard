@@ -31,9 +31,9 @@ This tool exists to answer one question before damage happens:
 ✔ Simple menu-based interface
 ✔ Ethical & defensive by design
 
-## 📸 Screenshots
-![Clean Script](assets/screen-clean.png)
+![Clean Script Analysis](assets/screen-clean.png)
 
+![Dangerous Script Detection](assets/screen-danger.png)
 
 ## 📦 Tool Information
 
@@ -88,8 +88,6 @@ chmod 777 ~/.ssh
 rm -rf /
 
 The tool will flag it immediately.
-
-![Dangerous Script](assets/screen-danger.png)
 
 
 ## 🧠 How It Works (Simple Explanation)
