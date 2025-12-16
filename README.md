@@ -20,7 +20,7 @@ This tool exists to answer one question before damage happens:
 
 
 
-🛡️ Features
+## 🛡️ Features
 
 ✔ Analyze shell scripts without executing them
 ✔ Detect high-risk commands (rm -rf, chmod 777, privilege abuse)
@@ -31,9 +31,13 @@ This tool exists to answer one question before damage happens:
 ✔ Simple menu-based interface
 ✔ Ethical & defensive by design
 
+## 📸 Screenshots
+
+### ✅ Clean Script Analysis
+![Clean Script](assets/screen-clean.png)
 
 
-📦 Tool Information
+## 📦 Tool Information
 
 Field	Value
 
@@ -47,29 +51,29 @@ Author	CyberEmpireX
 
 
 
-⚙️ Installation (Termux)
+## ⚙️ Installation (Termux)
 
-1️⃣ Install dependencies
+#1️⃣Install  dependencies
 
 pkg update && pkg upgrade
 pkg install python git
 
-2️⃣ Clone repository
+#2️⃣ Clone repository
 
 git clone https://github.com/cyberempirex/cex-installguard.git
 cd cex-installguard
 
-3️⃣ Make executable
+#3️⃣ Make executable
 
 chmod +x installguard.py
 
-4️⃣ Run tool
+#4️⃣ Run tool
 
 python installguard.py
 
 
 
-🧪 Usage Examples
+## 🧪 Usage Examples
 
 🔍 Analyze a script file
 
@@ -80,16 +84,18 @@ Enter script path: install.sh
 
 /data/data/com.termux/files/home/tool/install.sh
 
-⚠️ Dangerous script example
+## ⚠️ Dangerous script example
 
 chmod 777 ~/.ssh
 rm -rf /
 
 The tool will flag it immediately.
 
+### ❌ Dangerous Script Detection
+![Dangerous Script](assets/screen-danger.png)
 
 
-🧠 How It Works (Simple Explanation)
+## 🧠 How It Works (Simple Explanation)
 
 1. Reads the script as text
 
@@ -114,7 +120,7 @@ The tool will flag it immediately.
 
 
 
-📜 About CyberEmpireX
+## 📜 About CyberEmpireX
 
 CyberEmpireX focuses on:
 
@@ -131,7 +137,7 @@ Practical learning for low-resource users
 
 
 
-⚠️ Legal & Ethics Notice
+# ⚠️ Legal & Ethics Notice
 
 This tool is for:
 
@@ -146,7 +152,7 @@ You are responsible for how you use this tool.
 
 
 
-📈 Future Roadmap
+# 📈 Future Roadmap
 
 CLI mode (cex-installguard file.sh)
 
@@ -160,7 +166,7 @@ Risk score visualization
 
 
 
-📄 License
+## 📄 License
 
 MIT License
 You are free to use, modify, and distribute with credit.
