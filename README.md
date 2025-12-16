@@ -32,8 +32,6 @@ This tool exists to answer one question before damage happens:
 ✔ Ethical & defensive by design
 
 ## 📸 Screenshots
-
-### ✅ Clean Script Analysis
 ![Clean Script](assets/screen-clean.png)
 
 
@@ -91,7 +89,6 @@ rm -rf /
 
 The tool will flag it immediately.
 
-### ❌ Dangerous Script Detection
 ![Dangerous Script](assets/screen-danger.png)
 
 
