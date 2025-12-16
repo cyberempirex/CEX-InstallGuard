@@ -43,9 +43,6 @@ This tool exists to answer one critical question *before damage happens*:
 ### ❌ Dangerous Script Detection
 ![Dangerous Script Detection](assets/screen-danger.png)
 
-> 📱 **Note:** GitHub mobile shows screenshots as links.  
-> Open in **desktop view** to see inline images.
-
 ---
 
 ## 📦 Tool Information
