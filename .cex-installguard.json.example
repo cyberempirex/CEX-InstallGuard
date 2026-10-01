@@ -1,0 +1,7 @@
+{
+  "max_file_size": 5242880,
+  "workers": 4,
+  "recursive": true,
+  "disabled_rules": [],
+  "ignore_paths": [".git", ".venv", "venv", "node_modules"]
+}

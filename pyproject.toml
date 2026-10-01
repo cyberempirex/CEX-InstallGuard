@@ -1,0 +1,17 @@
+[build-system]
+requires=["setuptools>=68"]
+build-backend="setuptools.build_meta"
+[project]
+name="cex-installguard"
+version="13.0.0"
+description="Static security analysis for shell and installer scripts"
+requires-python=">=3.10"
+license={text="MIT"}
+keywords=["security","shell","static-analysis","installer","cybersecurity","termux"]
+[project.scripts]
+cex-installguard="cex_installguard.cli:main"
+[tool.pytest.ini_options]
+testpaths=["tests"]
+pythonpath=["."]
+[tool.setuptools]
+packages=["cex_installguard"]
