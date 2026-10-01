@@ -6,14 +6,14 @@
 
 CEX-InstallGuard analyzes shell/install scripts without executing them. It parses each script into a structured command tree — commands, arguments, pipelines, redirections — and evaluates a dataflow-aware rule engine over that tree, so related actions anywhere in a file produce high-confidence findings: a URL stored in a variable, a payload staged by a download and executed dozens of lines later, or an elevated write to system configuration.
 
-## Version 12.2.0
+## Version 13.0.0
 
-Version 12 replaces regex-only execution detection with a real shell parser and AST analyzer, fixes the false positives, baseline fingerprints, ignore-path handling and binary-file behavior of v11, and adds an adversarial test suite.
+Version 13 builds on the structured shell parser and AST/dataflow analyzer with a semantic artifact-lifecycle model, improved execution semantics, stronger evasion coverage, and expanded regression/adversarial testing.
 
 ### What is actually implemented
 
 - A **structured shell tokenizer/parser** (`shellparser.py`): quoting, escapes, expansions, command substitution, pipelines, sequences, redirections, heredocs, subshell groups, assignment prefixes — tolerant of malformed input by design
-- **AST-based analyzer** (`analyzer.py`): 46 structural rules driven by command/argument analysis and per-file **dataflow tracking** (remote variables, staged download/decode artifacts reaching execution sinks)
+- **AST-based analyzer** (`analyzer.py`): 52 security rules driven by command/argument analysis and per-file **dataflow tracking** (remote variables, staged download/decode artifacts reaching execution sinks)
 - Content rules for non-command signals (fork bombs, encoded blobs) and keyword indicators
 - **False-positive fixes over v11**: quoted variables in `rm` are not flagged; `PATH=` appends are not flagged; static `eval` strings are not flagged; secret exposure requires printing a variable, not a literal
 - **Position-stable baseline fingerprints (v2)** — suppression survives line edits and reformatting; v1 baselines still apply
@@ -32,7 +32,7 @@ Version 12 replaces regex-only execution detection with a real shell parser and 
   discovery, semgrep-style `.installguardignore` files, `--color=WHEN`
   with `NO_COLOR`/`CLICOLOR_FORCE` support, and SARIF output with
   checkout-relative URIs for GitHub Code Scanning
-- CLI and Python API; CI tests (142: unit, integration, regression, adversarial)
+- CLI and Python API; CI tests (205: unit, integration, regression, and adversarial)
 - Docs generated from the rule registry (`tools/generate_docs.py`) so documentation cannot drift
 - No target script execution
 
@@ -82,7 +82,7 @@ python -m cex_installguard script.sh --save-baseline baseline.json
 python -m cex_installguard script.sh --baseline baseline.json
 ```
 
-v12 fingerprints are position-stable: inserting lines or changing whitespace does not resurrect suppressed findings. Baselines saved by v10/v11 continue to work.
+v13 baselines use position-stable fingerprints: inserting lines or changing whitespace does not resurrect suppressed findings. Baselines saved by earlier releases continue to work.
 
 Suppress a rule explicitly:
 
