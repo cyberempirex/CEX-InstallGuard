@@ -109,33 +109,28 @@ CEX-InstallGuard provides a static inspection layer before that execution takes 
 
 ## Architecture
 
-
+```mermaid
 flowchart TD
-    A["Shell / Installer Script"] --> B["Shell Parser"]
-    B --> C["Structured Command Tree"]
-    C --> D["AST Analyzer"]
+    A["Shell Script"] --> B["Shell Parser"]
+    B --> C["AST / Command Tree"]
+    C --> D["Analyzer"]
 
     D --> E["Command Analysis"]
     D --> F["Dataflow Tracking"]
     D --> G["Artifact Lifecycle"]
 
-    E --> H["Security Rule Engine"]
+    E --> H["Security Rules"]
     F --> H
     G --> H
 
-    H --> I["Finding Deduplication"]
-    I --> J["Confidence Analysis"]
-    J --> K["Risk Scoring"]
+    H --> I["Findings"]
+    I --> J["Risk Scoring"]
 
-    K --> L["Terminal"]
-    K --> M["JSON Report"]
-    K --> N["SARIF 2.1.0"]
-    K --> O["HTML Dashboard"]
-
-    G --> P["Downloaded"]
-    P --> Q["Made Executable"]
-    Q --> R["Interpreted"]
-    R --> S["Executed"]
+    J --> K["Terminal"]
+    J --> L["JSON"]
+    J --> M["SARIF"]
+    J --> N["HTML"]
+```
 
 ---
 
