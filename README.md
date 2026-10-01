@@ -1,38 +1,51 @@
-<div align="center">CEX-InstallGuard
+<div align="center">
 
-Static Shell & Installer Security Analysis
+# CEX-InstallGuard
 
-Inspect first. Execute later.
+### Static Shell & Installer Security Analysis
 
-<br/>""Python" (https://img.shields.io/badge/Python-3.9%2B-3776AB?style=flat-square&logo=python&logoColor=white)" (https://python.org)
-""Version" (https://img.shields.io/badge/Version-v13.0.0-6c5ce7?style=flat-square&logo=github)" (https://github.com/cyberempirex/CEX-InstallGuard)
-""Security Rules" (https://img.shields.io/badge/Security_Rules-52-e74c3c?style=flat-square&logo=shield&logoColor=white)" (docs/rules.md)
-""Tests" (https://img.shields.io/badge/Tests-205-2ecc71?style=flat-square&logo=pytest&logoColor=white)" (tests/)
-""License" (https://img.shields.io/badge/License-MIT-2ecc71?style=flat-square&logo=opensourceinitiative&logoColor=white)" (LICENSE)
-""Platform" (https://img.shields.io/badge/Platform-Linux%20%7C%20macOS%20%7C%20Termux-0984e3?style=flat-square&logo=linux&logoColor=white)" (docs/termux.md)
-""SARIF" (https://img.shields.io/badge/SARIF-2.1.0-3498db?style=flat-square)" (docs/reports.md)
-""CEX" (https://img.shields.io/badge/CyberEmpireX-CEX-1a1a2e?style=flat-square&logo=github&logoColor=white)" (https://github.com/cyberempirex)
+**Inspect first. Execute later.**
 
-<br/>Parse · Trace · Detect · Report
+<br/>
 
-</div>---
+[![Python](https://img.shields.io/badge/Python-3.9%2B-3776AB?style=flat-square&logo=python&logoColor=white)](https://python.org)
+[![Version](https://img.shields.io/badge/Version-v13.0.0-6c5ce7?style=flat-square&logo=github)](https://github.com/cyberempirex/CEX-InstallGuard)
+[![Security Rules](https://img.shields.io/badge/Security_Rules-52-e74c3c?style=flat-square&logo=shield&logoColor=white)](docs/rules.md)
+[![Tests](https://img.shields.io/badge/Tests-205-2ecc71?style=flat-square&logo=pytest&logoColor=white)](tests/)
+[![License](https://img.shields.io/badge/License-MIT-2ecc71?style=flat-square&logo=opensourceinitiative&logoColor=white)](LICENSE)
+[![Platform](https://img.shields.io/badge/Platform-Linux%20%7C%20macOS%20%7C%20Termux-0984e3?style=flat-square&logo=linux&logoColor=white)](docs/termux.md)
+[![SARIF](https://img.shields.io/badge/SARIF-2.1.0-3498db?style=flat-square)](docs/reports.md)
+[![CEX](https://img.shields.io/badge/CyberEmpireX-CEX-1a1a2e?style=flat-square&logo=github&logoColor=white)](https://github.com/cyberempirex)
 
-What Is CEX-InstallGuard?
+<br/>
+
+**Parse · Trace · Detect · Report**
+
+<br/>
+
+> 🛡️ Static security analysis for shell scripts and installers — without executing the target.
+
+</div>
+
+---
+
+## What Is CEX-InstallGuard?
 
 CEX-InstallGuard is a static security analyzer for shell scripts, installers, bootstrap scripts, and shell-based automation.
 
-It analyzes scripts without executing the target.
+It analyzes scripts **without executing the target**.
 
-Instead of treating a shell script as plain text, CEX-InstallGuard parses it into a structured command representation containing commands, arguments, pipelines, redirections, assignments, substitutions, heredocs, and other shell constructs.
+Instead of treating a shell script as plain text, CEX-InstallGuard parses it into a structured representation containing commands, arguments, pipelines, redirections, assignments, substitutions, heredocs, subshells, and other shell constructs.
 
 A dataflow-aware rule engine then analyzes how commands and potentially dangerous artifacts relate to one another.
 
 For example:
 
+```text
 Remote URL
     │
     ▼
-Download
+ Download
     │
     ▼
 Staged Artifact
@@ -44,14 +57,15 @@ Execution Sink
     │
     ▼
 Security Finding
+```
 
 This allows CEX-InstallGuard to recognize relationships that may be separated by many lines of shell code.
 
-«The goal is not simply to find suspicious strings. It is to understand security-relevant behavior.»
+> **The goal is not simply to find suspicious strings. It is to understand security-relevant behavior.**
 
 ---
 
-Why Shell & Installer Security?
+## Why Shell & Installer Security?
 
 Shell installers routinely perform operations with significant system impact:
 
@@ -71,29 +85,31 @@ CEX-InstallGuard provides a static inspection layer before that execution takes 
 
 ---
 
-Core Capabilities
+## Core Capabilities
 
-Capability| Description
-Structured Shell Parsing| Parses quoting, escapes, expansions, pipelines, sequences, redirections, heredocs, subshells and assignment prefixes
-AST Analysis| Evaluates shell behavior through structured commands rather than raw text alone
-Dataflow Tracking| Tracks remote variables, downloaded artifacts and staged payloads across a file
-Artifact Lifecycle Analysis| Distinguishes downloading, permission changes, interpretation and actual execution
-52 Security Rules| Detects execution, network, permissions, obfuscation, persistence, destructive actions and other security indicators
-Execution-Evasion Detection| Handles indirect commands, "env", static "eval", "bash -c", heredocs and artifact movement
-Baseline System| Position-stable fingerprints for suppressing accepted findings
-Ignore Paths| ".installguardignore" and "--exclude" support
-Risk Scoring| Confidence-weighted 0–100 risk model
-JSON Reports| Machine-readable structured output
-SARIF 2.1.0| Security-tooling and GitHub Code Scanning integration
-HTML Reports| Standalone dashboard with severity filtering
-Interactive Console| Command center, finding inspector, rule explorer and security profile
-CI Support| Deterministic analysis and meaningful exit codes
-No Target Execution| The target shell script is not executed during static analysis
+| Capability | Description |
+|---|---|
+| **Structured Shell Parsing** | Parses quoting, escapes, expansions, pipelines, sequences, redirections, heredocs, subshells and assignment prefixes |
+| **AST Analysis** | Evaluates shell behavior through structured commands rather than raw text alone |
+| **Dataflow Tracking** | Tracks remote variables, downloaded artifacts and staged payloads across a file |
+| **Artifact Lifecycle Analysis** | Distinguishes downloading, permission changes, interpretation and actual execution |
+| **52 Security Rules** | Detects execution, network, permissions, obfuscation, persistence, destructive actions and other security indicators |
+| **Execution-Evasion Detection** | Handles indirect commands, `env`, static `eval`, `bash -c`, heredocs and artifact movement |
+| **Baseline System** | Position-stable fingerprints for suppressing accepted findings |
+| **Ignore Paths** | `.installguardignore` and `--exclude` support |
+| **Risk Scoring** | Confidence-weighted 0–100 risk model |
+| **JSON Reports** | Machine-readable structured output |
+| **SARIF 2.1.0** | Security-tooling and GitHub Code Scanning integration |
+| **HTML Reports** | Standalone dashboard with severity filtering |
+| **Interactive Console** | Command center, finding inspector, rule explorer and security profile |
+| **CI Support** | Deterministic analysis and meaningful exit codes |
+| **No Target Execution** | The target shell script is not executed during static analysis |
 
 ---
 
-Architecture
+## Architecture
 
+```mermaid
 flowchart TD
     A["Shell / Installer Script"] --> B["Shell Tokenizer & Parser"]
     B --> C["Structured Command Tree"]
@@ -128,15 +144,17 @@ flowchart TD
     style K fill:#f39c12,color:#fff
     style N fill:#3498db,color:#fff
     style O fill:#2ecc71,color:#fff
+```
 
 ---
 
-v13 Semantic Artifact Model
+## v13 Semantic Artifact Model
 
 One of the important changes in v13 is the separation of artifact lifecycle states.
 
 A downloaded file being made executable is not the same event as that file actually being executed.
 
+```text
         DOWNLOAD
            │
            ▼
@@ -147,122 +165,144 @@ A downloaded file being made executable is not the same event as that file actua
            ├──────────────► MAKE EXECUTABLE
            │                       │
            │                       ▼
-           │                  IG049
+           │                      IG049
            │
            ├──────────────► INTERPRET
            │                       │
            │                       ▼
-           │                  IG050
+           │                      IG050
            │
            └──────────────► EXECUTE
                                    │
                                    ▼
-                              IG048
+                                  IG048
+```
 
 For example:
 
+```bash
 curl -o /tmp/tool http://example.com/tool
 chmod +x /tmp/tool
 /tmp/tool
+```
 
 CEX-InstallGuard distinguishes:
 
+```text
 Line 1 → Retrieval
 Line 2 → Permission change
 Line 3 → Actual execution
+```
 
-This prevents "chmod +x" from being incorrectly interpreted as proof that the artifact was executed.
+This prevents `chmod +x` from being incorrectly interpreted as proof that the artifact was executed.
 
 ---
 
-Security Rules
+## Security Rules
 
-CEX-InstallGuard currently contains 52 registered security rules.
+CEX-InstallGuard currently contains **52 registered security rules**.
 
 Rules operate across structured shell information, content analysis, dataflow, and artifact state.
 
-Rule Categories
+### Rule Categories
 
-Category| Security Focus
-Execution| Shell execution, interpreters, downloaded artifact execution
-Network| Remote retrieval, insecure transport, suspicious network operations
-Permissions| Executable permission changes and dangerous permission operations
-Obfuscation| Encoded payloads and suspicious transformations
-Persistence| Startup scripts and persistent configuration changes
-Secrets| Potential credential and secret exposure
-Filesystem| Suspicious file creation, movement, modification and deletion
-Privilege| Elevated or privileged operations
-Shell Abuse| Suspicious shell constructs and execution chains
+| Category | Security Focus |
+|---|---|
+| **Execution** | Shell execution, interpreters, downloaded artifact execution |
+| **Network** | Remote retrieval, insecure transport, suspicious network operations |
+| **Permissions** | Executable permission changes and dangerous permission operations |
+| **Obfuscation** | Encoded payloads and suspicious transformations |
+| **Persistence** | Startup scripts and persistent configuration changes |
+| **Secrets** | Potential credential and secret exposure |
+| **Filesystem** | Suspicious file creation, movement, modification and deletion |
+| **Privilege** | Elevated or privileged operations |
+| **Shell Abuse** | Suspicious shell constructs and execution chains |
 
 Explore the complete rule registry:
 
+```bash
 python -m cex_installguard --rules
+```
 
 Full generated catalogue:
 
-"docs/rules.md"
+```text
+docs/rules.md
+```
 
 ---
 
-Execution-Evasion Coverage
+## Execution-Evasion Coverage
 
 Shell behavior can be represented indirectly.
 
 CEX-InstallGuard specifically analyzes several common forms of execution indirection.
 
-Indirect commands
+### Indirect Commands
 
+```bash
 C=curl
 $C https://example.com/payload
+```
 
-Environment prefixes
+### Environment Prefixes
 
+```bash
 env URL=https://example.com/payload curl "$URL"
+```
 
-Static "eval"
+### Static `eval`
 
+```bash
 eval 'curl https://example.com/payload'
+```
 
-"bash -c"
+### `bash -c`
 
+```bash
 bash -c 'curl https://example.com/payload'
+```
 
-Heredoc-generated scripts
+### Heredoc-Generated Scripts
 
+```bash
 cat > /tmp/install.sh <<'EOF'
 curl https://example.com/payload
 EOF
+```
 
-Artifact movement
+### Artifact Movement
 
+```bash
 curl -o /tmp/a https://example.com/a
 cp /tmp/a /tmp/b
 /tmp/b
+```
 
 These cases are analyzed recursively where possible, with shared file state used to preserve relevant relationships.
 
 ---
 
-False-Positive Controls
+## False-Positive Controls
 
 Security analysis needs precision as well as coverage.
 
 CEX-InstallGuard includes regression coverage for cases such as:
 
-- Quoted variables in "rm"
-- "PATH=" append operations
-- Static "eval" strings that do not represent dynamic execution
+- Quoted variables in `rm`
+- `PATH=` append operations
+- Static `eval` strings that do not represent dynamic execution
 - Literal secrets that are not actually exposed
 - Permission changes that do not constitute execution
 - Non-executable file names resembling commands
 
-The goal is to distinguish suspicious behavior from suspicious-looking text.
+The goal is to distinguish suspicious **behavior** from suspicious-looking text.
 
 ---
 
-Risk Scoring
+## Risk Scoring
 
-Every scan can produce a risk score from 0 to 100.
+Every scan can produce a risk score from **0 to 100**.
 
 The scoring model combines:
 
@@ -275,30 +315,32 @@ The scoring model combines:
 
 Current severity weights:
 
-Severity| Weight
-Critical| 40
-High| 25
-Medium| 10
-Low| 3
+| Severity | Weight |
+|---|---:|
+| Critical | 40 |
+| High | 25 |
+| Medium | 10 |
+| Low | 3 |
 
-Verdict Ladder
+### Verdict Ladder
 
-Verdict| Condition
-BLOCK| Any critical finding
-REVIEW| Any high finding or score ≥ 60
-CAUTION| Any medium finding or score ≥ 30
-LOW-SIGNAL| Lower-risk findings
-NO-FINDINGS| No qualifying findings
+| Verdict | Condition |
+|---|---|
+| **BLOCK** | Any critical finding |
+| **REVIEW** | Any high finding or score ≥ 60 |
+| **CAUTION** | Any medium finding or score ≥ 30 |
+| **LOW-SIGNAL** | Lower-risk findings |
+| **NO-FINDINGS** | No qualifying findings |
 
-A "NO-FINDINGS" result does not mean that the target is guaranteed safe.
+A `NO-FINDINGS` result does **not** mean that the target is guaranteed safe.
 
 Static analysis has inherent limitations.
 
 ---
 
-Installation
+## Installation
 
-Requirements
+### Requirements
 
 - Python 3.9+
 - Standard Python library for the core engine
@@ -306,88 +348,115 @@ Requirements
 
 No external security scanner is required for the core analysis engine.
 
-From Source
+### From Source
 
+```bash
 git clone https://github.com/cyberempirex/CEX-InstallGuard.git
 cd CEX-InstallGuard
 python -m pip install -e .
+```
 
 Verify the installation:
 
+```bash
 cex-installguard --help
+```
 
 ---
 
-Termux
+## Termux
 
 CEX-InstallGuard is designed to work directly in Termux.
 
+```bash
 termux-setup-storage
 cd ~/storage/downloads/CEX-InstallGuard
 python -m pip install -e .
+```
 
 Launch the interactive console:
 
+```bash
 cex-installguard
+```
 
 Or scan directly:
 
+```bash
 cex-installguard examples/dangerous.sh
+```
 
 ---
 
-Quick Start
+## Quick Start
 
-Scan one script
+### Scan One Script
 
+```bash
 cex-installguard script.sh
+```
 
-Scan a project
+### Scan a Project
 
+```bash
 cex-installguard ./my-project --recursive
+```
 
-Parallel scanning
+### Parallel Scanning
 
+```bash
 cex-installguard ./my-project --recursive --workers 8
+```
 
-Minimum severity
+### Minimum Severity
 
+```bash
 cex-installguard script.sh --min-severity high
+```
 
-Exclude paths
+### Exclude Paths
 
+```bash
 cex-installguard script.sh \
   --exclude 'vendor/*' \
   --exclude 'test-data/*'
+```
 
-Quiet mode
+### Quiet Mode
 
+```bash
 cex-installguard script.sh --quiet
+```
 
 ---
 
-Exit Codes
+## Exit Codes
 
-The default failure threshold is "high".
+The default failure threshold is `high`.
 
-Code| Meaning
-"0"| No finding at or above the failure threshold and no blocking scan error
-"1"| Scan/input error without qualifying findings
-"2"| At least one finding at or above the threshold
+| Code | Meaning |
+|---:|---|
+| `0` | No finding at or above the failure threshold and no blocking scan error |
+| `1` | Scan/input error without qualifying findings |
+| `2` | At least one finding at or above the threshold |
 
 This makes the analyzer suitable for CI pipelines.
 
 ---
 
-Reports
+## Reports
 
-JSON
+### JSON
 
+```bash
 python -m cex_installguard script.sh --json report.json
+```
 
-SARIF 2.1.0
+### SARIF 2.1.0
 
+```bash
 python -m cex_installguard script.sh --sarif report.sarif.json
+```
 
 The SARIF output includes:
 
@@ -398,32 +467,40 @@ The SARIF output includes:
 
 This makes the output suitable for security tooling and GitHub Code Scanning workflows.
 
-HTML
+### HTML
 
+```bash
 python -m cex_installguard script.sh --html report.html
+```
 
 The HTML report is standalone and provides severity filtering through a security-focused dashboard.
 
 ---
 
-Baselines
+## Baselines
 
 Save the current findings:
 
+```bash
 python -m cex_installguard script.sh \
   --save-baseline baseline.json
+```
 
 Analyze against a baseline:
 
+```bash
 python -m cex_installguard script.sh \
   --baseline baseline.json
+```
 
 Suppress a specific rule:
 
+```bash
 python -m cex_installguard script.sh \
   --suppress IG012
+```
 
-Position-Stable Fingerprints
+### Position-Stable Fingerprints
 
 Baseline fingerprints are designed to survive normal source changes.
 
@@ -433,48 +510,63 @@ Earlier baseline formats remain supported.
 
 ---
 
-Configuration
+## Configuration
 
 Project configuration can be provided through:
 
+```text
 .cex-installguard.json
+```
 
 An example configuration is included:
 
+```text
 .cex-installguard.json.example
+```
 
 Create a local configuration:
 
+```bash
 cp .cex-installguard.json.example .cex-installguard.json
+```
 
 Ignore paths can be defined using:
 
+```text
 .installguardignore
+```
 
 Additional path exclusions can be supplied through:
 
+```bash
 --exclude
+```
 
-Color Controls
+### Color Controls
 
 CEX-InstallGuard supports:
 
+```text
 --color=WHEN
 NO_COLOR
 CLICOLOR_FORCE
+```
 
 Interactive animations automatically remain suitable for CI and piped output.
 
 ---
 
-Interactive Console
+## Interactive Console
 
 Running CEX-InstallGuard without a target launches the interactive console:
 
+```bash
 cex-installguard
+```
 
 The console provides:
 
+```text
 ┌──────────────────────────────────────┐
 │        CEX-InstallGuard Console      │
 ├──────────────────────────────────────┤
@@ -484,40 +576,47 @@ The console provides:
 │  Security Profile                    │
 │  Scan Interface                      │
 └──────────────────────────────────────┘
+```
 
 The interface is optimized for terminal environments including Termux.
 
 ---
 
-CLI Reference
+## CLI Reference
 
+```text
 cex-installguard [PATH] [OPTIONS]
+```
 
-Option| Purpose
-"PATH"| Script or project to analyze
-"--recursive"| Scan directories recursively
-"--workers N"| Configure parallel workers
-"--min-severity LEVEL"| Minimum displayed severity
-"--fail-on LEVEL"| Configure CI failure threshold
-"--exclude GLOB"| Exclude matching paths
-"--quiet"| Reduce terminal output
-"--json FILE"| Generate JSON report
-"--sarif FILE"| Generate SARIF report
-"--html FILE"| Generate HTML report
-"--baseline FILE"| Load baseline
-"--save-baseline FILE"| Save baseline
-"--suppress RULE"| Suppress a rule
-"--rules"| Explore security rules
-"--help"| Display help
+| Option | Purpose |
+|---|---|
+| `PATH` | Script or project to analyze |
+| `--recursive` | Scan directories recursively |
+| `--workers N` | Configure parallel workers |
+| `--min-severity LEVEL` | Minimum displayed severity |
+| `--fail-on LEVEL` | Configure CI failure threshold |
+| `--exclude GLOB` | Exclude matching paths |
+| `--quiet` | Reduce terminal output |
+| `--json FILE` | Generate JSON report |
+| `--sarif FILE` | Generate SARIF report |
+| `--html FILE` | Generate HTML report |
+| `--baseline FILE` | Load baseline |
+| `--save-baseline FILE` | Save baseline |
+| `--suppress RULE` | Suppress a rule |
+| `--rules` | Explore security rules |
+| `--help` | Display help |
 
 Complete CLI information:
 
+```bash
 cex-installguard --help
+```
 
 ---
 
-Project Structure
+## Project Structure
 
+```text
 CEX-InstallGuard/
 │
 ├── cex_installguard/
@@ -581,12 +680,13 @@ CEX-InstallGuard/
 ├── SECURITY.md
 ├── LICENSE
 └── README.md
+```
 
 ---
 
-Testing
+## Testing
 
-CEX-InstallGuard v13 includes 205 tests spanning:
+CEX-InstallGuard v13 includes **205 tests** spanning:
 
 - Parser behavior
 - AST analysis
@@ -604,31 +704,36 @@ CEX-InstallGuard v13 includes 205 tests spanning:
 
 Run the complete test suite:
 
+```bash
 pytest
+```
 
-Development dependencies:
+Install development dependencies:
 
+```bash
 python -m pip install -r requirements-dev.txt
+```
 
 ---
 
-Documentation
+## Documentation
 
-Document| Description
-"Architecture" (docs/architecture.md)| Analysis architecture and design
-"Rules" (docs/rules.md)| Generated security rule catalogue
-"Security Model" (docs/security-model.md)| Scope, assumptions and limitations
-"Configuration" (docs/configuration.md)| Project configuration
-"Reports" (docs/reports.md)| Report formats and integration
-"API" (docs/api.md)| Python API
-"Termux" (docs/termux.md)| Termux usage
-"Development" (docs/development.md)| Development workflow
+| Document | Description |
+|---|---|
+| [Architecture](docs/architecture.md) | Analysis architecture and design |
+| [Rules](docs/rules.md) | Generated security rule catalogue |
+| [Security Model](docs/security-model.md) | Scope, assumptions and limitations |
+| [Configuration](docs/configuration.md) | Project configuration |
+| [Reports](docs/reports.md) | Report formats and integration |
+| [API](docs/api.md) | Python API |
+| [Termux](docs/termux.md) | Termux usage |
+| [Development](docs/development.md) | Development workflow |
 
 ---
 
-Security Model & Limitations
+## Security Model & Limitations
 
-CEX-InstallGuard is a static analyzer, not a sandbox or dynamic malware-analysis environment.
+CEX-InstallGuard is a **static analyzer**, not a sandbox or dynamic malware-analysis environment.
 
 It does not execute the target script during analysis.
 
@@ -642,42 +747,45 @@ Static analysis can still miss behavior involving:
 
 A clean scan should therefore be interpreted as:
 
-«No qualifying behavior was detected by the current analysis model.»
+> **No qualifying behavior was detected by the current analysis model.**
 
 It should not be interpreted as a guarantee of safety.
 
-See "SECURITY.md" (SECURITY.md) and "docs/security-model.md" (docs/security-model.md).
+See [SECURITY.md](SECURITY.md) and [docs/security-model.md](docs/security-model.md).
 
 ---
 
-v13.0.0 at a Glance
+## v13.0.0 at a Glance
 
-Component| Current
-Security Rules| 52
-Tests| 205
-Reports| JSON · SARIF 2.1.0 · HTML
-Analysis| Structured parsing + AST + dataflow
-Artifact Model| Download → permission → interpretation → execution
-Interface| CLI + Interactive Console + Python API
-Configuration| ".cex-installguard.json"
-Ignore System| ".installguardignore" + "--exclude"
-Platforms| Linux · macOS · Termux
-Target Execution| Never performed by the analyzer
-
----
-
-CyberEmpireX
-
-CEX-InstallGuard is developed by CyberEmpireX (CEX) as part of its security tooling ecosystem.
-
-"CyberEmpireX on GitHub" (https://reference-url-citation.invalid/0)
+| Component | Current |
+|---|---|
+| **Security Rules** | 52 |
+| **Tests** | 205 |
+| **Reports** | JSON · SARIF 2.1.0 · HTML |
+| **Analysis** | Structured parsing + AST + dataflow |
+| **Artifact Model** | Download → permission → interpretation → execution |
+| **Interface** | CLI + Interactive Console + Python API |
+| **Configuration** | `.cex-installguard.json` |
+| **Ignore System** | `.installguardignore` + `--exclude` |
+| **Platforms** | Linux · macOS · Termux |
+| **Target Execution** | Never performed by the analyzer |
 
 ---
 
-<div align="center">CEX-InstallGuard
+## CyberEmpireX
 
-Parse · Trace · Detect · Report
+CEX-InstallGuard is developed by **CyberEmpireX (CEX)** as part of its security tooling ecosystem.
 
-v13.0.0 · MIT License · CyberEmpireX
+[![CyberEmpireX](https://img.shields.io/badge/CyberEmpireX-CEX-1a1a2e?style=flat-square&logo=github&logoColor=white)](https://github.com/cyberempirex)
+
+---
+
+<div align="center">
+
+**CEX-InstallGuard**
+
+*Parse · Trace · Detect · Report*
+
+**v13.0.0 · MIT License · CyberEmpireX**
 
 </div>
